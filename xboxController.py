@@ -16,15 +16,14 @@ for event in device.read_loop():
             elif event.code == evdev.ecodes.BTN_Y:
                 print("Button Y pressed")
     elif event.type == evdev.ecodes.EV_ABS:
-        if event.value == 3:
-            # Left Analog Stick
-            if event.code == evdev.ecodes.ABS_X:
-                print(f"Joystick X: {event.value}")
-            elif event.code == evdev.ecodes.ABS_Y:
-                print(f"Joystick Y: {event.value}")
-            # Right Trigger
-            elif event.code == evdev.ecodes.ABS_GAS:
-                print(f"Right Trigger: {event.value}")
-            # Left Trigger
-            elif event.code == evdev.ecodes.ABS_BRAKE:
-                print(f"Left Trigger: {event.value}")
+        # Left Analog Stick
+        if event.code == evdev.ecodes.ABS_X:
+            print(f"Joystick X: {event.value}")
+        elif event.code == evdev.ecodes.ABS_Y:
+            print(f"Joystick Y: {event.value}")
+        # Right Trigger
+        elif event.code == evdev.ecodes.ABS_GAS:
+            print(f"Right Trigger: {event.value}")
+        # Left Trigger
+        elif event.code == evdev.ecodes.ABS_BRAKE:
+            print(f"Left Trigger: {event.value}")
