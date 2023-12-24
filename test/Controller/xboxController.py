@@ -19,8 +19,8 @@ for event in device.read_loop():
         # Left Analog Stick
         if event.code == evdev.ecodes.ABS_X:
             print(f"Joystick X: {event.value}")
-        #elif event.code == evdev.ecodes.ABS_Y:
-            #print(f"Joystick Y: {event.value}")
+        elif event.code == evdev.ecodes.ABS_Y:
+            print(f"Joystick Y: {event.value}")
         # Right Trigger
         elif event.code == evdev.ecodes.ABS_GAS:
             print(f"Right Trigger: {event.value}")

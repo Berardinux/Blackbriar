@@ -27,7 +27,5 @@ for event in device.read_loop():
 
             #################################################
             duty_cycle = 2 + (angle / 18)
+            print(duty_cycle)
             servo1.ChangeDutyCycle(duty_cycle)
-            #time.sleep(0.1)
-            #var1 = round(event.value / 64)
-            #print(f"Joystick X: {event.value}")
