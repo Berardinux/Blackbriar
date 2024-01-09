@@ -7,11 +7,12 @@ import numpy as np
 
 # Motor
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(16, GPIO.OUT)
-GPIO.setup(18, GPIO.OUT)
-GPIO.setup(22, GPIO.OUT)
-motor = GPIO.PWM(22, 1000)
-motor.start(0)
+GPIO.setup(29, GPIO.OUT)
+GPIO.setup(31, GPIO.OUT)
+pinOneMotor_pwm = GPIO.PWM(29, 1000)
+pinTwoMotor_pwm = GPIO.PWM(31, 1000)  # PWM pin
+pinOneMotor_pwm.start(0)
+pinTwoMotor_pwm.start(0)
 
 # Controller
 def map_value(value, in_min, in_max, out_min, out_max):
@@ -22,21 +23,21 @@ print(device)
 # Motor control methods
 def forward(speed):
     print(f"Going Forward at {speed}%")
-    GPIO.output(16, True)
-    GPIO.output(18, False)
-    motor.ChangeDutyCycle(speed)
+    GPIO.output(31, False)
+    pinOneMotor_pwm.ChangeDutyCycle(speed)
+
 def backward(speed):
     print(f"Going Backward at {speed}%")
-    GPIO.output(16, False)
-    GPIO.output(18, True)
-    motor.ChangeDutyCycle(speed)
+    GPIO.output(29, False)
+    pinTwoMotor_pwm.ChangeDutyCycle(speed)
+
 def stop():
     print("Stopping")
-    GPIO.output(16, False)
-    GPIO.output(18, False)
+    GPIO.output(29, False)  # IN1
     time.sleep(1)
-    motor.ChangeDutyCycle(0)
+    motor_pwm.ChangeDutyCycle(0)
 
+# Event loop
 for event in device.read_loop():
     if event.type == evdev.ecodes.EV_ABS:
         # Right Trigger
@@ -52,3 +53,4 @@ for event in device.read_loop():
     # Right Bumper
     elif event.type == evdev.ecodes.EV_KEY and event.code == evdev.ecodes.BTN_TR and event.value == 1:
         stop()
+

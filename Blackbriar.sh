@@ -6,8 +6,8 @@ isControllerConnected=$(ls /dev/input | grep event0)
 # Check if the Xbox Controller is connected.
 if [ -n "$isControllerConnected" ]; then
   echo "Command produced isControllerConnected: $isControllerConnected"
-  /usr/bin/python3 /home/berardinux/Documents/Blackbriar/src/dcMotorXbox.py &
   /usr/bin/python3 /home/berardinux/Documents/Blackbriar/src/servoXbox.py &
+  /usr/bin/python3 /home/berardinux/Documents/Blackbriar/src/dcMotorxbox.py &
   while [ -n "$isControllerConnected" ]; do
     isControllerConnected=$(ls /dev/input | grep event0)
     echo "The Xbox Controller is still connected"
