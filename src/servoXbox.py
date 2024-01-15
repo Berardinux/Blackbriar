@@ -9,9 +9,15 @@ servo.start(0)
 
 controllerInput = evdev.InputDevice("/dev/input/event0")
 
-for event in controllerInput.read_loop():
-  if event.type == evdev.ecodes.EV_ABS:
-    if event.code == evdev.ecodes.ABS_X:
-      angle = 5.5 + (event.value / 21845)
-      servo.ChangeDutyCycle(angle)
-      print(angle)
+try:
+    for event in controllerInput.read_loop():
+        if event.type == evdev.ecodes.EV_ABS:
+            if event.code == evdev.ecodes.ABS_X:
+                angle = 5.7 + (event.value / 21845)
+                servo.ChangeDutyCycle(angle)
+                print(angle)
+
+except KeyboardInterrupt:
+    pass
+finally:
+    GPIO.cleanup()
