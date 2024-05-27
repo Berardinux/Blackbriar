@@ -23,7 +23,7 @@ sudo udevadm control --reload-rules
 
 
 # Systemd
-sudo nano /etc/systemd/system/blackbriar-monitor.service {
+sudo nano /etc/systemd/system/Blackbriar.service {
 
 [Unit]
 Description=Blackbriar Monitor Service
